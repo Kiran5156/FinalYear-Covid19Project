@@ -16,7 +16,7 @@ result = forecast[forecast.index>number_of_rows-8]
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction.csv')
 prediction = pd.read_csv('prediction.csv')
-prediction.to_html('output.html')
+
 
 # final_result = result[['ds','yhat']]
 # print(final_result)

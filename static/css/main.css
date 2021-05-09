@@ -7,3 +7,12 @@ font-family:sans-serif;
     text-align: center;
 }
 
+
+
+.container{  
+    text-align: center;  
+    /* border: 7px solid red;   */
+    width: 100px;  
+    height: 300px;  
+    padding-top: 100px;  
+    }  

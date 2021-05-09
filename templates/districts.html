@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+
+
+    <div class="container">
+        <a href="/"><button class="btn btn-primary">Return Home</button></a>
+    </div>
+
+
+    <h3>Alappuzha</h3>
+    <canvas id="d1" width="1200" height="500"></canvas>
+    <h3>Ernakulam</h3>
+    <canvas id="d2" width="1200" height="500"></canvas>
+    <h3>Idukki</h3>
+    <canvas id="d3" width="1200" height="500"></canvas>
+    <h3>Kannur</h3>
+    <canvas id="d4" width="1200" height="500"></canvas>
+    <h3>Kasaragod</h3>
+    <canvas id="d5" width="1200" height="500"></canvas>
+    <h3>Kollam</h3>
+    <canvas id="d6" width="1200" height="500"></canvas>
+    <h3>Kottayam</h3>
+    <canvas id="d7" width="1200" height="500"></canvas>
+    <h3>Kozhikode</h3>
+    <canvas id="d8" width="1200" height="500"></canvas>
+    <h3>Malappuram</h3>
+    <canvas id="d9" width="1200" height="500"></canvas>
+    <h3>Palakkad</h3>
+    <canvas id="d10" width="1200" height="500"></canvas>
+    <h3>Pathanamthitta</h3>
+    <canvas id="d11" width="1200" height="500"></canvas>
+    <h3>Thiravananthapuram</h3>
+    <canvas id="d12" width="1200" height="500"></canvas>
+    <h3>Thrissur</h3>
+    <canvas id="d13" width="1200" height="500"></canvas>
+    <h3>Wayanad</h3>
+    <canvas id="d14" width="1200" height="500"></canvas>
+
+
+
+            <!-- JAVASCRIPT -->
+
+<script>
+        function draw(id,label,value)
+        {
+      
+        var ctx = document.getElementById(id).getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels:  label,
+            datasets: [{
+                label: 'Daily Cases',
+                barThickness:10, 
+                data:value,
+               borderColor:['rgba(29,204,44)']
+               
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            responsive:false
+        }
+    });
+    
+        }
+    draw("d1",{{labels["labels_d1"]|tojson }},{{values["values_d1"]|tojson }})
+    draw("d2",{{labels["labels_d2"]|tojson }},{{values["values_d2"]|tojson }})
+    draw("d3",{{labels["labels_d3"]|tojson }},{{values["values_d3"]|tojson }})
+    draw("d4",{{labels["labels_d4"]|tojson }},{{values["values_d4"]|tojson }})
+    draw("d5",{{labels["labels_d5"]|tojson }},{{values["values_d5"]|tojson }})
+    draw("d6",{{labels["labels_d6"]|tojson }},{{values["values_d6"]|tojson }})
+    draw("d7",{{labels["labels_d7"]|tojson }},{{values["values_d7"]|tojson }})
+    draw("d8",{{labels["labels_d8"]|tojson }},{{values["values_d8"]|tojson }})
+    draw("d9",{{labels["labels_d9"]|tojson }},{{values["values_d9"]|tojson }})
+    draw("d10",{{labels["labels_d10"]|tojson }},{{values["values_d10"]|tojson }})
+    draw("d11",{{labels["labels_d11"]|tojson }},{{values["values_d11"]|tojson }})
+    draw("d12",{{labels["labels_d12"]|tojson }},{{values["values_d12"]|tojson }})
+    draw("d13",{{labels["labels_d13"]|tojson }},{{values["values_d13"]|tojson }})
+    draw("d14",{{labels["labels_d14"]|tojson }},{{values["values_d14"]|tojson }})
+    
+    </script>
+    
+</body>
+</html>

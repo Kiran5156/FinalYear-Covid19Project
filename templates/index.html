@@ -16,45 +16,76 @@
 
 
 <div class="page-header">
-  <h2>Cumilative-Cases</h2>
+  <h2>Daily Cases</h2>
+</div>
+                          <!--Statewise daily-->
+<canvas id="Daily-cases" width="1000" height="500"></canvas>
+<!-- Parsing through the csv -->
+<table class='table table-dark'>
+  <tr>
+    <th>Date</th>
+    <th>Daily Cases</th>
+  </tr>
+  {% for i in range(7)%}
+    <tr>
+      <td>{{labels[i]}}</td>
+      <td>{{values[i]}}</td>
+    </tr>
+  {% endfor %}
+</table>
+                    
+
+                          <!--Cumilative Cases-->
+<div class="page-header">
+  <h2>Cumilative Cases</h2>
+</div>
+                        
+<canvas id='Cumilative-cases' width="1200" height="500"></canvas>
+
+<!-- <table class='table table-dark'>
+  <tr>
+    <th>Date</th>
+    <th>Daily Cases</th>
+  </tr>
+  {% for i in range(423)%}
+    <tr>
+      <td>{{labels2[i]}}</td>
+      <td>{{values2[i]}}</td>
+    </tr>
+  {% endfor %}
+</table> -->
+
+                    <!-- DISTRICT WISE -->
+<div class="container">
+  <a href="/districtwisecases" role="button">
+  <button type='button' class="btn btn-primary btn-lg btn-block">District Wise Cases</button>
+  </a>
 </div>
 
-<canvas id="line-chart" width="1000" height="500"></canvas>
 
+
+
+
+
+
+
+                            <!-- JAVASCRIPT!!!! -->
 <script>
-  //Graph for Cumilative Cases
-  var ctx = document.getElementById('line-chart').getContext('2d');
-// labels = JSON.parse({{ labels | tojson }})
-// data = JSON.parse({{ values | tojson }})
+    function draw(id,label,value)
+{
+  var ctx = document.getElementById(id).getContext('2d');
+
 
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
-        labels:  {{ labels | tojson }},
+        labels:  label,
         datasets: [{
-            label: 'Cumilative Cases',
+            label: id,
             barThickness:10, 
-            data:{{ values | tojson }},
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 100, 0.2)',
-                'rgba(255, 255, 160, 0.2)'  
-
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
+            data:value,
+           borderColor:['rgba(29,204,44)']
+           
         }]
     },
     options: {
@@ -66,22 +97,15 @@ var myChart = new Chart(ctx, {
         responsive:false
     }
 });
+
+    }
+
+
+
+draw("Daily-cases",{{labels|tojson}},{{values|tojson}})
+draw("Cumilative-cases",{{labels2|tojson}},{{values2|tojson}})
 </script>
 
-<!-- Parsing through the csv -->
-<table class='table table-dark'>
-  <tr>
-    <th>Date</th>
-    <th>Cumilative-Cases</th>
-  </tr>
-  {% for i in range(7)%}
-    <tr>
-      <td>{{labels[i]}}</td>
-      <td>{{values[i]}}</td>
-    </tr>
-  {% endfor %}
-
-</table>
 
 
 </body>

@@ -13,10 +13,10 @@ dfsd3 = dfsd3.rename(columns={"Date_YMD":"ds","KL":"y"})
 
 m = Prophet(#growth="linear",
 
-	seasonality_mode= "multiplicative", 
-	changepoint_prior_scale= 30,
-	seasonality_prior_scale= 35,
-	holidays_prior_scale= 20,
+	# seasonality_mode= "multiplicative", 
+	# changepoint_prior_scale= 30,
+	# seasonality_prior_scale= 35,
+	# holidays_prior_scale= 20,
 	daily_seasonality= False,
 	weekly_seasonality= False,
 	yearly_seasonality= False,
@@ -41,12 +41,29 @@ m.fit(dfsd3)
 future = m.make_future_dataframe(periods=7)
 
 forecast1 = m.predict(future)
+forecast1["yhat"] = np.where(forecast1["yhat"]<0,0,forecast1["yhat"])
 
 index1 = forecast1.index
 number_of_rows = len(index1)
 result = forecast1[forecast1.index>number_of_rows-8]
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction1.csv')
+
+
+######################
+#Summary graph
+dfsda = dfsd1[dfsd1['Status']== 'Confirmed']
+dfsdb = dfsd1[dfsd1['Status']== 'Recovered']
+dfsdc = dfsd1[dfsd1['Status']== 'Deceased']
+
+final_result=dfsda[['Date_YMD','KL']]
+final_result.to_csv('dailyCon.csv')
+
+final_result=dfsdb[['Date_YMD','KL']]
+final_result.to_csv('dailyRec.csv')
+
+final_result=dfsdc[['Date_YMD','KL']]
+final_result.to_csv('dailyDec.csv')
 
 
 
@@ -61,6 +78,8 @@ m=Prophet(interval_width=0.95)
 m.fit(dfs1)
 future = m.make_future_dataframe(periods=7)
 forecast2 = m.predict(future)
+forecast2["yhat"] = np.where(forecast2["yhat"]<0,0,forecast2["yhat"])
+
 
 result = forecast2
 final_result=result[['ds','yhat']]
@@ -131,10 +150,13 @@ dfd13 = dfd13.rename(columns={"Date":"ds","Confirmed":"y"})
 dfd14 = df14[['Date','Confirmed']]
 dfd14 = dfd14.rename(columns={"Date":"ds","Confirmed":"y"})
 
+
+
 m=Prophet(interval_width=0.95)
 m.fit(dfd1)
 future = m.make_future_dataframe(periods=7)
 forecast_d1 = m.predict(future)
+forecast_d1["yhat"] = np.where(forecast_d1["yhat"]<0,0,forecast_d1["yhat"])
 result = forecast_d1
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d1.csv')
@@ -144,15 +166,16 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd2)
 future = m.make_future_dataframe(periods=7)
 forecast_d2 = m.predict(future)
+forecast_d2["yhat"] = np.where(forecast_d2["yhat"]<0,0,forecast_d2["yhat"])
 result = forecast_d2
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d2.csv')
-
 
 m=Prophet(interval_width=0.95)
 m.fit(dfd3)
 future = m.make_future_dataframe(periods=7)
 forecast_d3 = m.predict(future)
+forecast_d3["yhat"] = np.where(forecast_d3["yhat"]<0,0,forecast_d3["yhat"])
 result = forecast_d3
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d3.csv')
@@ -162,6 +185,7 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd4)
 future = m.make_future_dataframe(periods=7)
 forecast_d4 = m.predict(future)
+forecast_d4["yhat"] = np.where(forecast_d4["yhat"]<0,0,forecast_d4["yhat"])
 result = forecast_d4
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d4.csv')
@@ -171,6 +195,7 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd5)
 future = m.make_future_dataframe(periods=7)
 forecast_d5 = m.predict(future)
+forecast_d5["yhat"] = np.where(forecast_d5["yhat"]<0,0,forecast_d5["yhat"])
 result = forecast_d5
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d5.csv')
@@ -180,6 +205,7 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd6)
 future = m.make_future_dataframe(periods=7)
 forecast_d6 = m.predict(future)
+forecast_d6["yhat"] = np.where(forecast_d6["yhat"]<0,0,forecast_d6["yhat"])
 result = forecast_d6
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d6.csv')
@@ -189,6 +215,7 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd7)
 future = m.make_future_dataframe(periods=7)
 forecast_d7 = m.predict(future)
+forecast_d7["yhat"] = np.where(forecast_d7["yhat"]<0,0,forecast_d7["yhat"])
 result = forecast_d7
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d7.csv')
@@ -198,6 +225,7 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd8)
 future = m.make_future_dataframe(periods=7)
 forecast_d8 = m.predict(future)
+forecast_d8["yhat"] = np.where(forecast_d8["yhat"]<0,0,forecast_d8["yhat"])
 result = forecast_d8
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d8.csv')
@@ -207,6 +235,7 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd9)
 future = m.make_future_dataframe(periods=7)
 forecast_d9 = m.predict(future)
+forecast_d9["yhat"] = np.where(forecast_d9["yhat"]<0,0,forecast_d9["yhat"])
 result = forecast_d9
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d9.csv')
@@ -216,6 +245,7 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd10)
 future = m.make_future_dataframe(periods=7)
 forecast_d10 = m.predict(future)
+forecast_d10["yhat"] = np.where(forecast_d10["yhat"]<0,0,forecast_d10["yhat"])
 result = forecast_d10
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d10.csv')
@@ -225,6 +255,7 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd11)
 future = m.make_future_dataframe(periods=7)
 forecast_d11 = m.predict(future)
+forecast_d11["yhat"] = np.where(forecast_d11["yhat"]<0,0,forecast_d11["yhat"])
 result = forecast_d11
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d11.csv')
@@ -235,6 +266,7 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd12)
 future = m.make_future_dataframe(periods=7)
 forecast_d12 = m.predict(future)
+forecast_d12["yhat"] = np.where(forecast_d12["yhat"]<0,0,forecast_d12["yhat"])
 result = forecast_d12
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d12.csv')
@@ -244,6 +276,7 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd13)
 future = m.make_future_dataframe(periods=7)
 forecast_d13 = m.predict(future)
+forecast_d13["yhat"] = np.where(forecast_d13["yhat"]<0,0,forecast_d13["yhat"])
 result = forecast_d13
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d13.csv')
@@ -254,9 +287,25 @@ m=Prophet(interval_width=0.95)
 m.fit(dfd14)
 future = m.make_future_dataframe(periods=7)
 forecast_d14 = m.predict(future)
+forecast_d14["yhat"] = np.where(forecast_d14["yhat"]<0,0,forecast_d14["yhat"])
 result = forecast_d14
 final_result=result[['ds','yhat']]
 final_result.to_csv('prediction_d14.csv')
+
+###################################################################
+#Testing graph
+data1 = pd.read_csv('GoK Dashboard  Official Kerala COVID-19 Statistics.csv',index_col=0)
+data = data1.reindex(index=data1.index[::-1])
+data = data.reset_index()
+data.dropna(inplace=True)
+
+final_result=data[['Date','Processed in 24hr(2pm-2pm)']]
+final_result.to_csv('testingD.csv')
+
+final_result=data[['Date','Tot. Sent']]
+final_result.to_csv('testingC.csv')
+
+
 
 
 

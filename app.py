@@ -11,10 +11,13 @@ df = df.rename(columns={'ds':"Date","yhat":"Cases"})
 df1 = df[["Date","Cases"]]
 labels1 =[]
 values1 = []
+sum= 0
 for ind in df1.index:
     labels1.append(df1["Date"][ind])
     values1.append(int(df1["Cases"][ind]))
+    sum=sum + values1[ind]
 
+diff1=int(0.08*sum)
 
 #Cumilative Cases
 df2 = pd.read_csv('./model/prediction2.csv')
@@ -122,11 +125,15 @@ values_dict["values_d13"] = d13[1]
 values_dict["values_d14"] = d14[1]
 
 l1=[]
+l2=[]
 
 def sub(str):
     r=len(values_dict[str])
     diff= (values_dict[str][r-1])- (values_dict[str][r-8])
     l1.append(diff)
+    hcare=int(0.08*diff)
+    l2.append(hcare)
+
 
 sub("values_d1")
 sub("values_d2")
@@ -204,15 +211,15 @@ for ind in dftc2.index:
 
 @app.route('/')
 def index():
-    return render_template("index.html",labels = labels1,values=values1,labels2=labels2,values2=values2,labelsc=labelsc,valuesc=valuesc,
+    return render_template("index.html",labels = labels1,values=values1,diff1=diff1,labels2=labels2,values2=values2,labelsc=labelsc,valuesc=valuesc,
     labelsr=labelsr,valuesr=valuesr,labelsde=labelsde,valuesde=valuesde,labelst1 = labelst1,valuest1=valuest1,
-    labelstc = labelstc,valuestc=valuestc,kl_data=kl)
+    labelstc = labelstc,valuestc=valuestc,kl_data=kl,va_data=va,qs_data=qs)
 
 
 
 @app.route('/districtwisecases')
 def district():
-    return render_template('districts.html',labels=labels_dict,values=values_dict,list1=l1,
+    return render_template('districts.html',labels=labels_dict,values=values_dict,list1=l1,list2=l2,
     districts_data=districts_data,districts=districts,li = li1)
 
 

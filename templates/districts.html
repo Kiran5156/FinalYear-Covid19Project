@@ -17,7 +17,7 @@
         <a href="/"><button class="btn btn-primary">Return Home</button></a>
     </div>
        
-    <div class="page-header container1 col-lg-12 col-md-12 col-sm-12">
+    <div class="page-header container1">
         <div class="page-header">
                 <h1 style="padding-bottom: 40px;">District-wise Cumulative Data</h1>
         </div>
@@ -25,7 +25,7 @@
             <!-- <div class="flex-container"> -->
             {%for x in range(14) %}
             <div class="flex-child1">
-                <h3 style="color:aquamarine;text-align:left ;">{{ districts[x] }}</h3>
+                <h3 style="color:rgb(18, 22, 21);text-align:left ;">{{ districts[x] }}</h3>
                 <h4 style="color: dodgerblue;display: inline-block;">Confirmed : {{districts_data[x][0]}}</h4>&emsp;&emsp;
                 <h4 style="color: red;display:inline-block">Deceased : {{districts_data[x][0]}}</h4>&emsp;&emsp;
                 <h4 style="color: lawngreen;display:inline-block">Recovered : {{districts_data[x][0]}}</h4>&emsp;&emsp;
@@ -39,52 +39,17 @@
           
         
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
+        <h1>District-wise Predicted Data</h1>
         <h2>Alappuzha</h2>
         <div class="chart-container" style="position: relative; height:80vh; width:80vw">
         <canvas id="d1"></canvas>
         </div>
+        <p>The graphs shows district-wise cumulative cases,along with a 7-day prediction</p>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[0]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[0]|tojson}}</font></p>
+        <p>(The approximations are done by taking an average of <font color="red">8%</font> as the total number of people requiring hospital care.)</p>
         <hr class="solid">
         
 
@@ -94,6 +59,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[1]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[1]|tojson}}</font></p>
         <hr class="solid">
        
         <h2>Idukki</h2>
@@ -102,6 +69,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[2]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[2]|tojson}}</font></p>
         <hr class="solid">
         
         
@@ -111,6 +80,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[3]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[3]|tojson}}</font></p>
         <hr class="solid">
         
         <h2>Kasaragod</h2>
@@ -119,6 +90,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[4]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[4]|tojson}}</font></p>
         <hr class="solid">
         
         <h2>Kollam</h2>
@@ -127,6 +100,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[5]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[5]|tojson}}</font></p>
         <hr class="solid">
         
         <h2>Kottayam</h2>
@@ -135,6 +110,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[6]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[6]|tojson}}</font></p>
         <hr class="solid">
         
         <h2>Kozhikode</h2>
@@ -143,6 +120,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[7]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[7]|tojson}}</font></p>
         <hr class="solid">
        
         <h2>Malappuram</h2>
@@ -151,6 +130,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[8]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[8]|tojson}}</font></p>
         <hr class="solid">
         
         <h2>Palakkad</h2>
@@ -159,6 +140,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[9]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[9]|tojson}}</font></p>
         <hr class="solid">
         
         <h2>Pathanamthitta</h2>
@@ -167,6 +150,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[10]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[10]|tojson}}</font></p>
         <hr class="solid">
         
         <h2>Thiravananthapuram</h2>
@@ -175,6 +160,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[11]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[11]|tojson}}</font></p>
         <hr class="solid">
         
         <h2>Thrissur</h2>
@@ -183,6 +170,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[12]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[12]|tojson}}</font></p>
         <hr class="solid">
         
         <h2>Wayanad</h2>
@@ -191,6 +180,8 @@
         </div>
         <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
             <font face="Neuton" size="10px" color="#FF7A59"> {{list1[13]|tojson}}</font></p>
+        <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
+                <font face="Neuton" size="10px" color="#FF7A59"> {{list2[13]|tojson}}</font></p>
         <hr class="solid">
         
 

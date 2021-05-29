@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 <div class="page-header">
-  <h1>Covid-19 Case Prediction</h1>
+  <h1>Kerala Covid-19 Case Prediction</h1>
 </div>
 
 
@@ -21,8 +21,8 @@
   <div class="flex-child">
     <h3 style="color: #007bff;">Confirmed</h3>
     <b>
-      <h3 style="color: #007bff;">{{kl_data[0]}}
-      </h3>
+      <h3 style="color: #007bff;">{{kl_data[0]}}</h3>
+      <h4 style="color: #007bff;">({{kl1_data[0]}})</h4>
     </b>
   </div>
 
@@ -30,6 +30,7 @@
     <h3 style="color: #dc3545;">Deceased</h3>
     <b>
       <h3 style="color:#dc3545;">{{kl_data[1]}}</h3>
+      <h4 style="color:#dc3545;">({{kl1_data[1]}})</h4>
     </b>
   </div>
 
@@ -37,6 +38,7 @@
     <h3 style="color: #28a745;">Recovered</h3>
    <b>
      <h3 style="color: #28a745;">{{kl_data[2]}}</h3>
+     <h4 style="color: #28a745;">({{kl1_data[2]}})</h4>
     </b>
   </div>
 
@@ -81,6 +83,7 @@
       <h3 style="color: #ffc107;">Active</h3>
       <b>
         <h3 style="color: #ffc107;">{{kl_data[3]}} </h3>
+        <h4 style="color: #ffc107;">({{kl1_data[3]}}) </h4>
       </b>
     </div>
     
@@ -88,6 +91,7 @@
       <h3 style="color:rgb(201, 100, 100);">Total Under Observation</h3>
       <b>
         <h3 style="color:rgb(201, 100, 100);">{{kl_data[4]}} </h3>
+        <h4 style="color:rgb(201, 100, 100);">({{kl1_data[4]}}) </h4>
     </b>
     </div>
     
@@ -144,6 +148,8 @@
   </div>
   
   <div class=" page-header">
+    <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Total expected cases over next week:</font>
+      <font face="Neuton" size="10px" color="#FF7A59"> {{sum|tojson}}</font></p>
     <p style="color:black;margin: 10px 5px 15px 60px;"><font face="Neuton" size="5px">Approximate cases requiring intensive care over next week:</font>
       <font face="Neuton" size="10px" color="#FF7A59"> {{diff1|tojson}}</font></p>
     <p>(The approximations are done by taking an average of <font color="red">8%</font> as the 
@@ -212,6 +218,13 @@
   </div>
   <div class=" page-header">
     <p>The graph shows the daily count of tests performed.</p>
+  </div>
+
+  <div class="chart-container" style=" height:80vh; width:80vw">   
+    <canvas id="sChart1"></canvas>
+  </div>
+  <div class=" page-header">
+    <p>The graph shows the Daily Test Positivity and the 7 day average Test Positivity rate.</p>
   </div>
 
   <div class="chart-container" style="position: relative; height:80vh; width:80vw">   
@@ -447,6 +460,76 @@ var myChart = new Chart(ctx, {
 });
 
     }
+
+//TPR chart
+var sCanvas1 = document.getElementById("sChart1");
+
+Chart.defaults.global.defaultFontFamily = "Lato";
+Chart.defaults.global.defaultFontSize = 18;
+
+var datat1= {
+    label: "Test Positivity Rate (TPR)",
+    data: {{valuestp|tojson }},
+    lineTension: 0,
+    fill: false,
+    borderColor: 'grey'
+  };
+
+var datat2 = {
+    label: "Test Positivity Rate 7-day average",
+    data: {{valuestp7|tojson }},
+    lineTension: 0,
+    fill: false,
+    borderColor: 'red'
+  };
+
+
+
+  
+
+
+var sData1 = {
+  labels:{{labelstp|tojson }},
+  datasets:[datat1, datat2]
+};
+
+var chartOptionst1 = {
+          legend: {
+            display: true,
+            position: 'top'
+          },
+          tooltips: {
+            mode: 'index',
+            intersect: false
+          },
+           hover: {
+            mode: 'index',
+            intersect: false
+            },
+            elements: {
+                point:{
+                    radius: 0
+                    }
+                },
+            layout: {
+            padding: 50
+            },
+          scales: {
+             y: {
+                beginAtZero: true
+              }
+          },
+         maintainAspectRatio: false,
+         responsive:true
+            
+        };
+
+var lineChart = new Chart(sCanvas1, {
+  type: 'line',
+  data: sData1,
+  options: chartOptionst1
+});
+
 
 draw("Daily-cases",{{labels|tojson}},{{values|tojson}})
 draw("Cumilative-cases",{{labels2|tojson}},{{values2|tojson}})

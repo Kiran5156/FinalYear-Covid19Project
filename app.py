@@ -2,7 +2,7 @@ from flask import Flask,render_template,url_for,json
 import pandas as pd
 import numpy as np
 from request import *
-app =Flask(__name__)
+app =Flask(__name__, template_folder='templates')
 
 
 #Daily Cases
@@ -203,6 +203,23 @@ for ind in dftc2.index:
     labelstc.append(dftc2["Date"][ind])
     valuestc.append(int(dftc2["Cases"][ind]))
 
+dftpr1 = pd.read_csv('./model/testingTPR.csv')
+dftpr1 = dftpr1.rename(columns={'Date':"Date",'Test Positivity Rate (TPR)':"Cases"})
+dftpr2 = dftpr1[["Date","Cases"]]
+labelstp =[]
+valuestp = []
+for ind in dftc2.index:
+    labelstp.append(dftpr2["Date"][ind])
+    valuestp.append(dftpr2["Cases"][ind])
+
+df7tpr1 = pd.read_csv('./model/testingTPR7.csv')
+df7tpr1 = df7tpr1.rename(columns={'Date':"Date",'TPR last 7 day avg.':"Cases"})
+df7tpr2 = df7tpr1[["Date","Cases"]]
+labelstp7 =[]
+valuestp7 = []
+for ind in dftc2.index:
+    labelstp7.append(df7tpr2["Date"][ind])
+    valuestp7.append(df7tpr2["Cases"][ind])
 
 
 
@@ -211,9 +228,10 @@ for ind in dftc2.index:
 
 @app.route('/')
 def index():
-    return render_template("index.html",labels = labels1,values=values1,diff1=diff1,labels2=labels2,values2=values2,labelsc=labelsc,valuesc=valuesc,
+    return render_template("index.html",labels = labels1,values=values1,sum=sum,diff1=diff1,labels2=labels2,values2=values2,labelsc=labelsc,valuesc=valuesc,
     labelsr=labelsr,valuesr=valuesr,labelsde=labelsde,valuesde=valuesde,labelst1 = labelst1,valuest1=valuest1,
-    labelstc = labelstc,valuestc=valuestc,kl_data=kl,va_data=va,qs_data=qs)
+    labelstc = labelstc,valuestc=valuestc,kl_data=kl,va_data=va,qs_data=qs,labelstp= labelstp,valuestp= valuestp,
+    labelstp7= labelstp7, valuestp7= valuestp7,kl1_data=kl1)
 
 
 

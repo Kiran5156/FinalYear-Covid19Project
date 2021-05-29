@@ -21,6 +21,8 @@ kl =[]
 va=[]
 qs=[]
 
+kl1=[]
+
 districts = ["Alappuzha","Ernakulam","Idukki","Kannur","Kasaragod","Kollam","Kottayam","Kozhikode"
             ,"Malappuram","Palakkad","Pathanamthitta","Thiruvananthapuram","Thrissur","Wayanad"]
 
@@ -28,6 +30,10 @@ districts_data = []
 
 total_active = data1["summary"]["active"]
 total_obs = data1["summary"]["total_obs"]
+
+ch_active= data1["delta"]["active"]
+ch_obs = data1["delta"]["total_obs"]
+
 
 total_vac= data3["summary"]["tot_vaccinations"]
 first_d= data3["summary"]["tot_person_vaccinations"]
@@ -42,6 +48,11 @@ for i in li:
     kl.append(data1["summary"][i]) 
 kl.append(total_active)
 kl.append(total_obs)
+
+for i in li:
+    kl1.append(data1["delta"][i]) 
+kl1.append(ch_active)
+kl1.append(ch_obs)
 
 
 for district in districts:

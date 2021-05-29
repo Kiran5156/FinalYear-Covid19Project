@@ -305,6 +305,12 @@ final_result.to_csv('testingD.csv')
 final_result=data[['Date','Tot. Sent']]
 final_result.to_csv('testingC.csv')
 
+final_result=data[['Date','Test Positivity Rate (TPR)']]
+final_result.to_csv('testingTPR.csv')
+
+final_result=data[['Date','TPR last 7 day avg.']]
+final_result.to_csv('testingTPR7.csv')
+
 
 
 

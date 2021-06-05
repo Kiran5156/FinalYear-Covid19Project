@@ -16,7 +16,7 @@ data3 = result3.json()
 
 
 li = ["confirmed","deceased","recovered"]
-li1 = ["confirmed","deceased","recovered","vaccinated"]
+li1 = ["confirmed","deceased","recovered","vaccinated1"]
 kl =[]
 va=[]
 qs=[]

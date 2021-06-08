@@ -17,7 +17,7 @@ for ind in df1.index:
     values1.append(int(df1["Cases"][ind]))
     sum=sum + values1[ind]
 
-diff1=int(0.08*sum)
+diff1=int(0.12*sum)
 
 #Cumilative Cases
 df2 = pd.read_csv('./model/prediction2.csv')
@@ -131,7 +131,7 @@ def sub(str):
     r=len(values_dict[str])
     diff= (values_dict[str][r-1])- (values_dict[str][r-8])
     l1.append(diff)
-    hcare=int(0.08*diff)
+    hcare=int(0.12*diff)
     l2.append(hcare)
 
 

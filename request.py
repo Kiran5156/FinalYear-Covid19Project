@@ -60,7 +60,7 @@ for district in districts:
     for i in li1:
         l.append(data["KL"]["districts"][district]["total"][i])
     districts_data.append(l)
-print(districts_data)
+
 
 va.append(total_vac)
 va.append(first_d)

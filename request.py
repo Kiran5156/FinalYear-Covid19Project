@@ -35,9 +35,9 @@ ch_active= data1["delta"]["active"]
 ch_obs = data1["delta"]["total_obs"]
 
 
-total_vac= data3["summary"]["tot_vaccinations"]
-first_d= data3["summary"]["tot_person_vaccinations"]
-second_d= data3["summary"]["second_dose"]
+total_vac= data3["summary"]["tot_person_vaccinations"]
+first_d= data3["summary"]["second_dose"]
+second_d= total_vac-first_d
 
 hos_obs= data1["summary"]["hospital_obs"]
 home_obs= data1["summary"]["home_obs"]
